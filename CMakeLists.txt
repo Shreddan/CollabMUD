@@ -1,0 +1,59 @@
+cmake_minimum_required(VERSION 3.7)
+project(OlcMud)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} CMakeModules/)
+cmake_policy(SET CMP0037 OLD)
+
+# Debug (remove this line for live build if NOT on windows)
+set(CMAKE_BUILD_TYPE Debug)
+
+set(executable output)
+set(SrcDIR ./OlcMud)
+set(IncludeDIR ./include)
+
+if (WIN32)
+    # Include Windows
+endif (WIN32)
+
+if (UNIX)
+    # Include Linux
+endif (UNIX)
+
+# Include /include
+include_directories(${executable}
+	${IncludeDIR}
+)
+
+set(THREADS_PREFER_PTHREAD_FLAD ON)
+find_package(Threads REQUIRED)
+find_package(OpenGL REQUIRED)
+
+
+file(GLOB SourceFiles 
+	${SrcDIR}/*
+)
+
+add_executable(${executable} ${SourceFiles})
+
+set_target_properties(${executable} PROPERTIES
+	CXX_STANDARD 17
+	CXX_EXTENSIONS OFF
+)
+
+# Link linux
+if (UNIX)
+	target_link_libraries(${executable}
+		Threads::Threads
+	)
+endif (UNIX)
+
+# Link windows
+if (WIN32)
+	target_link_libraries(${executable}
+		${WinSDK}
+	)
+endif (WIN32)
+
+target_link_libraries(${executable}
+	${CMAKE_DL_LIBS}
+)
