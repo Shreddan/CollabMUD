@@ -3,6 +3,8 @@ class MudEngine
 {
 public:
 	MudEngine();
+
+	
 	~MudEngine();
 };
 
