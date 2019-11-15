@@ -7,6 +7,8 @@ int main( int argc, char** argv )
 {
 	MudEngine mud;
 
+	SettupANSI();
+
 	std::cout << "Welcome to the CollabMud v" << VERSION_MAJOR << "." << VERSION_MINOR << std::endl;
 	std::cout << std::endl;
 
