@@ -12,7 +12,18 @@ MudEngine::~MudEngine()
 
 void MudEngine::Intro()
 {
-	std::cout << CSI << WHITE << "><-------------------------------------------------------------------------><" << std::endl;
-	std::cout << CSI << GREEN << "||Welcome to CollabMud||" << std::endl;
-	std::cout << CSI << WHITE << "><-------------------------------------------------------------------------><" << std::endl;
+	int numofplr = 0;
+	std::cout << CSI << WHITE << "><=========================================================================><\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "||" << CSI << GREEN << "                        Welcome to UnNamedMud                            " << CSI << WHITE << "||\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "||" << CSI << MAGENTA << "   There are " << CSI << CYAN << numofplr << CSI << MAGENTA << " Players Online                                            " << CSI << WHITE << "||\n";
+	std::cout << CSI << WHITE << "||                                                                         ||\n";
+	std::cout << CSI << WHITE << "><=========================================================================><\n";
 }

@@ -5,6 +5,7 @@
 
 #include "Telnet/Telnet.h"
 #include "ANSI.h"
+#include "tcp_server.h"
 
 class MudEngine
 {
