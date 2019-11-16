@@ -11,6 +11,8 @@ set(executable output)
 set(SrcDIR ./OlcMud)
 set(IncludeDIR ./include)
 
+# TODO: Include ability to compile / run tests (maybe unit test lib(?))
+
 if (WIN32)
     # Include Windows
 endif (WIN32)
