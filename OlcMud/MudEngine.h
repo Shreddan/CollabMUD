@@ -3,7 +3,7 @@
 #include <iostream>
 #include <iomanip>
 
-#include "Telnet/Telnet.h"
+// #include "Telnet/Telnet.h"
 #include "ANSI.h"
 
 class MudEngine
