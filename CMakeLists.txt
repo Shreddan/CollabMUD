@@ -31,6 +31,7 @@ find_package(OpenGL REQUIRED)
 
 file(GLOB SourceFiles 
 	${SrcDIR}/*
+	${SrcDIR}/Telnet/*
 )
 
 add_executable(${executable} ${SourceFiles})
