@@ -27,9 +27,8 @@ include_directories(${executable}
 	${IncludeDIR}
 )
 
-set(THREADS_PREFER_PTHREAD_FLAD ON)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-find_package(OpenGL REQUIRED)
 
 
 file(GLOB SourceFiles 
