@@ -34,9 +34,12 @@ void MudEngine::Intro()
 	IntroSeq += CSI WHITE "><=========================================================================><\n";
 
 	tel1.Initialise();
-	tel1.waitForConn();
-	if (tel1.ClientSocket != INVALID_SOCKET)
-	{
-		tel1.SendIntro(IntroSeq, tel1.ClientSocket);
-	}
+	std::thread listenthread(&TelnetInterface::waitForConn, &tel1);
+	tel1.SendIntro(IntroSeq, tel1.ClientSocket);
+	Loop();
+}
+
+void MudEngine::Loop()
+{
+	
 }

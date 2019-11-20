@@ -2,6 +2,7 @@
 
 
 #include <iomanip>
+#include <thread>
 
 
 #include "Telnet/TelnetInterface.hpp"

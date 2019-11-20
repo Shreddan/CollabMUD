@@ -9,7 +9,7 @@
 #endif
 
 #ifdef __linux__
-#include <socket.h>
+#include <sys/socket.h>
 #endif
 
 #include <iostream>
@@ -31,7 +31,7 @@ public:
 	//Winsock init
 	void Initialise();
 
-	void waitForConn();
+	void waitForConn(std::string& IntroSeq);
 
 	void SendIntro(std::string& IntroSeq, SOCKET ClientSocket);
 
