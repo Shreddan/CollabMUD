@@ -7,7 +7,7 @@ MudEngine::MudEngine()
 
 MudEngine::~MudEngine()
 {
-
+	listenthread.join();
 }
 
 void MudEngine::Intro()
@@ -34,7 +34,7 @@ void MudEngine::Intro()
 	IntroSeq += CSI WHITE "><=========================================================================><\n";
 
 	tel1.Initialise();
-	std::thread listenthread(&TelnetInterface::waitForConn, &tel1);
+	listenthread = std::thread(&TelnetInterface::waitForConn, &tel1);
 	tel1.SendIntro(IntroSeq, tel1.ClientSocket);
 	//Loop();
 }

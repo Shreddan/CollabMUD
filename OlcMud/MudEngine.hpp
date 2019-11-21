@@ -17,6 +17,7 @@ public:
 	void Intro();
 
 	void Loop();
+	std::thread listenthread;
 
 	std::string IntroSeq;
 
