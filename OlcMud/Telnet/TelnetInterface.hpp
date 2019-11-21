@@ -14,6 +14,8 @@
 
 #include <iostream>
 #include <string>
+#include <thread>
+
 #include "TelnetHelpers.hpp"
 
 
@@ -31,7 +33,7 @@ public:
 	//Winsock init
 	void Initialise();
 
-	void waitForConn(std::string& IntroSeq);
+	void waitForConn();
 
 	void SendIntro(std::string& IntroSeq, SOCKET ClientSocket);
 

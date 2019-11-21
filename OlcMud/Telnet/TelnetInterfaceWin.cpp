@@ -53,7 +53,7 @@ void TelnetInterface::Initialise()
 	freeaddrinfo(result);
 }
 
-void TelnetInterface::waitForConn(std::string& IntroSeq)
+void TelnetInterface::waitForConn()
 {
 	ClientSocket = INVALID_SOCKET;
 	while (ClientSocket == INVALID_SOCKET)

@@ -36,7 +36,7 @@ void MudEngine::Intro()
 	tel1.Initialise();
 	std::thread listenthread(&TelnetInterface::waitForConn, &tel1);
 	tel1.SendIntro(IntroSeq, tel1.ClientSocket);
-	Loop();
+	//Loop();
 }
 
 void MudEngine::Loop()
