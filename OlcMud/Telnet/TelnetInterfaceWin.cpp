@@ -21,7 +21,7 @@ void TelnetInterface::Initialise()
 	struct addrinfo *result = NULL;
 	addrinfo hints;
 
-	iResult = WSAStartup(MAKEWORD(2, 2), &wsadata);
+	int iResult = WSAStartup(MAKEWORD(2, 2), &wsadata);
 
 	ZeroMemory(&hints, sizeof(hints));
 	hints.ai_family = AF_INET;
@@ -55,6 +55,7 @@ void TelnetInterface::Initialise()
 
 void TelnetInterface::waitForConn()
 {
+
 	ClientSocket = INVALID_SOCKET;
 	while (ClientSocket == INVALID_SOCKET)
 	{
@@ -75,9 +76,9 @@ void TelnetInterface::waitForConn()
 	
 }
 
-void TelnetInterface::SendIntro(std::string& IntroSeq, SOCKET ClientSocket)
-{
-	send(ClientSocket, IntroSeq.c_str(), IntroSeq.size(), 0);
-}
+// void TelnetInterface::SendIntro(std::string& IntroSeq, SOCKET ClientSocket)
+// {
+// 	send(ClientSocket, IntroSeq.c_str(), IntroSeq.size(), 0);
+// }
 
 #endif

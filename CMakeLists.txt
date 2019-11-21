@@ -34,6 +34,7 @@ find_package(Threads REQUIRED)
 file(GLOB SourceFiles 
 	${SrcDIR}/*
 	${SrcDIR}/Telnet/*
+	${SrcDIR}/Network/*
 )
 
 add_executable(${executable} ${SourceFiles})
