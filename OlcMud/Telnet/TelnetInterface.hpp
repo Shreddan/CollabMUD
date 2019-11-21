@@ -11,7 +11,9 @@
 
 #ifdef __linux__
 
+#include <sys/types.h> 
 #include <sys/socket.h>
+#include <netinet/in.h>
 
 #endif
 
@@ -66,7 +68,7 @@ public:
 	// on main thread
 	void Listen();
 
-	TelnetListenSocket TelnetListen;
+	TelnetListenSocket* TelnetListen = nullptr;
 
     // Not up to the telnet interface
     // to give connections threads (?)
