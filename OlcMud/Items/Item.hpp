@@ -10,7 +10,7 @@ enum Material
 	Steel,
 	Anicate,
 	Benalite,
-	Danicrote,
+	Danicrute,
 	Fiskite,
 	Javidite,
 	Stackate,
@@ -25,7 +25,14 @@ public:
 	Item();
 	~Item();
 
+	virtual void Create(int nType, int nMaterial, int nLevel, int nWeight) = 0;
 
 
+private:
+
+	int nType;
+	int nMaterial;
+	int nLevel;
+	int nWeight;
 
 };
