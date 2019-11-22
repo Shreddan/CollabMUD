@@ -1,15 +1,20 @@
 #pragma once 
 
-// Maybe singleton model for this?
 #ifdef _WIN32
+
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
 #pragma comment(lib, "Ws2_32.lib")
+
 #endif
 
 #ifdef __linux__
+
+#include <sys/types.h> 
 #include <sys/socket.h>
+#include <netinet/in.h>
+
 #endif
 
 #include <iostream>
@@ -18,7 +23,37 @@
 
 #include "TelnetHelpers.hpp"
 
+struct TCPSocket
+{
 
+#ifdef _WIN32
+	SOCKET Socket;
+	WSADATA WSAData;
+	int Port;
+#endif
+
+#ifdef __linux__
+	int Socket;
+	int Port;
+#endif
+	
+};
+
+
+struct TelnetListenSocket : public TCPSocket
+{
+
+};
+
+struct ClientSocket : public TCPSocket 
+{
+
+};
+
+
+// Telnet implementations 
+// Somewhat high level
+// OS agnostic
 class TelnetInterface
 {
 public:
@@ -26,30 +61,18 @@ public:
     TelnetInterface();
 	~TelnetInterface();
 
-    // Telnet implementations 
-    // Somewhat high level
-    // OS agnostic
+	// Initialise the listening socket
+	void Init();
 
-	//Winsock init
-	void Initialise();
+	// Does not return, do not call 
+	// on main thread
+	void Listen();
 
-	void waitForConn();
+	TelnetListenSocket* TelnetListen = nullptr;
 
-	void SendIntro(std::string& IntroSeq, SOCKET ClientSocket);
-
-	SOCKET ListenSocket;
-	SOCKET ClientSocket;
-
-	int GetiResult() { return iResult; }
-	int GetiSend() { return iSendResult; }
     // Not up to the telnet interface
     // to give connections threads (?)
     // ^^ subject to change
-
-private:
-	WSADATA wsadata;
-	int iResult;
-	int iSendResult;
 
 
 };

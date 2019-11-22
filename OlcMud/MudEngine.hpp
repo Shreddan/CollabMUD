@@ -4,7 +4,8 @@
 #include <iomanip>
 
 
-#include "Telnet/TelnetInterface.hpp"
+#include "Network/NetworkInterface.hpp"
+
 #include "ANSI.hpp"
 
 class MudEngine
@@ -13,14 +14,14 @@ public:
 	MudEngine();
 	~MudEngine();
 
+	void NetInit();
+	void GameInit();
 
-	void Intro();
+	void Ready();
 
-	void Loop();
-	std::thread listenthread;
 
-	std::string IntroSeq;
+private:
+	NetworkInterface mNetworkInterface;
 
-	TelnetInterface tel1;
 };
 
