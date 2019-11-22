@@ -10,3 +10,8 @@ Weapon::~Weapon()
 {
 
 }
+
+void Weapon::Create()
+{
+
+}
