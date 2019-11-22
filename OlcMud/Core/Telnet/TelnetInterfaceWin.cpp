@@ -88,10 +88,14 @@ void TelnetInterface::Listen()
 	else
 	{
 		std::cout << "Connection Established" << std::endl;
+		
 	}
 
-	send(clientSocket.Socket, "Bruh", std::string("Bruh").size(), 0);
-
+	if (clientSocket.Socket != INVALID_SOCKET)
+	{
+		int smergle = send(clientSocket.Socket, "Bruh", std::string("Bruh").size(), 0);
+		std::cout << smergle << std::endl;
+	}
 }
 
 #endif
