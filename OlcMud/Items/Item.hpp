@@ -19,10 +19,19 @@ enum Material
 
 };
 
+enum Type
+{
+	Weapon,
+	Armour,
+	Potion,
+	Accessory,
+	Special
+};
+
 class Item
 {
 public:
-	Item();
+	Item(int nType, int nMaterial, int nLevel, int nWeight);
 	~Item();
 
 	virtual void Create(int nType, int nMaterial, int nLevel, int nWeight) = 0;
