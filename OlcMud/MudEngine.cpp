@@ -11,8 +11,6 @@ void MudEngine::NetInit()
 
 	mNetworkInterface.Init();
 
-	listenthread.join();
-
 }
 
 void MudEngine::GameInit()

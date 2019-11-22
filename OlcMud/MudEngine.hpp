@@ -4,7 +4,7 @@
 #include <iomanip>
 
 
-#include "Network/NetworkInterface.hpp"
+#include "Core/Network/NetworkInterface.hpp"
 
 #include "ANSI.hpp"
 
