@@ -5,7 +5,7 @@
 
 int main( int argc, char** argv )
 {
-	MudEngine mud;
+	MudEngine mudEngine;
 
 	SettupANSI();
 
@@ -15,7 +15,8 @@ int main( int argc, char** argv )
 	std::cout << "\n";
 	std::cout << "\n";
 
-	mud.Intro();
+	mudEngine.NetInit();
+	mudEngine.Ready();
 
 	getchar();
 

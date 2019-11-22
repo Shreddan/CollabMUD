@@ -28,6 +28,7 @@ struct TCPSocket
 
 #ifdef _WIN32
 	SOCKET Socket;
+	WSADATA WSAData;
 	int Port;
 #endif
 
@@ -44,11 +45,10 @@ struct TelnetListenSocket : public TCPSocket
 
 };
 
-struct Clientsocket : public TCPSocket 
+struct ClientSocket : public TCPSocket 
 {
 
 };
-
 
 
 // Telnet implementations 
@@ -62,7 +62,7 @@ public:
 	~TelnetInterface();
 
 	// Initialise the listening socket
-	void Initialise();
+	void Init();
 
 	// Does not return, do not call 
 	// on main thread
