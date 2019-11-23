@@ -16,7 +16,7 @@ enum WeaponType
 class Weapon : public Item
 {
 public:
-	Weapon(int BaseDamage, int nWeaponType, int nType, int nMaterial, int nLevel, int nWeight);
+	Weapon( int BaseDamage, int nWeaponType, int nType, int nMaterial, int nLevel, int nWeight );
 	~Weapon();
 
 	virtual void Create();

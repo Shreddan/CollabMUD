@@ -1,12 +1,8 @@
 #pragma once
 
-
-#include <iomanip>
-
-
 #include "Core/Network/NetworkInterface.hpp"
 
-#include "ANSI.hpp"
+#include "Util/ConsoleANSI.hpp"
 
 class MudEngine
 {
@@ -18,7 +14,6 @@ public:
 	void GameInit();
 
 	void Ready();
-
 
 private:
 	NetworkInterface mNetworkInterface;

@@ -13,13 +13,14 @@ set(IncludeDIR ./include)
 
 # TODO: Include ability to compile / run tests (maybe unit test lib(?))
 
+# Include Windows
 if (WIN32)
-    # Include Windows
 
 endif (WIN32)
 
+# Include Linux
 if (UNIX)
-    # Include Linux
+
 endif (UNIX)
 
 # Include /include
@@ -33,8 +34,9 @@ find_package(Threads REQUIRED)
 
 file(GLOB SourceFiles 
 	${SrcDIR}/*
-	${SrcDIR}/Core/Telnet/*
+	${SrcDIR}/Util/*
 	${SrcDIR}/Core/Network/*
+	${SrcDIR}/Core/Telnet/*
 	${SrcDIR}/Items/*
 )
 
