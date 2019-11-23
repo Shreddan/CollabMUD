@@ -1,6 +1,6 @@
 #include "Item.hpp"
 
-Item::Item(int mType, int mMaterial, int mLevel, int mWeight)
+Item::Item( int nType, int nMaterial, int nLevel, int nWeight )
 {
 
 }

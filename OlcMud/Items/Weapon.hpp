@@ -16,13 +16,13 @@ enum WeaponType
 class Weapon : public Item
 {
 public:
-	Weapon(int mBaseDamage, int mWeaponType, int mType, int mMaterial, int mLevel, int mWeight);
+	Weapon( int BaseDamage, int nWeaponType, int nType, int nMaterial, int nLevel, int nWeight );
 	~Weapon();
 
 	virtual void Create();
 
 private:
 
-	int mBaseDamage;
-	int mWeaponType;
+	int BaseDamage;
+	int nWeaponType;
 };

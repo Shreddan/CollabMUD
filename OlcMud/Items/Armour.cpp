@@ -1,7 +1,7 @@
 #include "Armour.hpp"
 
-Armour::Armour(int mSlot, int mDefence, int mType, int mMaterial, int mLevel, int mWeight) 
-	: Item(mType, mMaterial, mLevel, mWeight)
+Armour::Armour( int nSlot, int nDefence, int nType, int nMaterial, int nLevel, int nWeight ) 
+	: Item( nType, nMaterial, nLevel, nWeight )
 {
 
 }

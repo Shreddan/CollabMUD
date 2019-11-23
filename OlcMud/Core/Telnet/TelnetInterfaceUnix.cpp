@@ -16,14 +16,14 @@ TelnetInterface::TelnetInterface()
 void TelnetInterface::Initialise() 
 {
 
-    if (TelnetListen != nullptr)
+    if ( TelnetListen != nullptr )
         return;
 
     TelnetListen = new TelnetListenSocket();
 
     struct sockaddr_in serverAddrees;
 
-    TelnetListen->Socket = socket(AF_INET, SOCK_STREAM, 0);
+    TelnetListen->Socket = socket( AF_INET, SOCK_STREAM, 0 );
     TelnetListen->Port = 23;
     
     if (TelnetListen->Socket < 0) 

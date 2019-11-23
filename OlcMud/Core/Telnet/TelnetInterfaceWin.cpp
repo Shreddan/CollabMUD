@@ -19,7 +19,7 @@ TelnetInterface::~TelnetInterface()
 void TelnetInterface::Init()
 {
 
-	if (TelnetListen != nullptr)
+	if ( TelnetListen != nullptr )
 		return;
 
 	TelnetListen = new TelnetListenSocket();
@@ -29,39 +29,40 @@ void TelnetInterface::Init()
 	struct addrinfo *result = NULL;
 	addrinfo hints;
 
-	int iResult = WSAStartup(MAKEWORD(2, 2), &TelnetListen->WSAData);
+	int iResult = WSAStartup( MAKEWORD(2, 2), &TelnetListen->WSAData );
 
-	ZeroMemory(&hints, sizeof(hints));
+	ZeroMemory( &hints, sizeof( hints ) );
 	hints.ai_family = AF_INET;
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_protocol = IPPROTO_TCP;
 	hints.ai_flags = AI_PASSIVE;
 
-	iResult = getaddrinfo(NULL, "23", &hints, &result);
+	iResult = getaddrinfo( NULL, "23", &hints, &result );
 
-	TelnetListen->Socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
+	TelnetListen->Socket = socket( result->ai_family, result->ai_socktype, result->ai_protocol );
 
 	if (TelnetListen->Socket == INVALID_SOCKET) 
 	{
 		std::cout << "Error at socket() : " << WSAGetLastError() << std::endl;
-		freeaddrinfo(result);
+		freeaddrinfo( result );
 		WSACleanup();
 		delete TelnetListen;
 		return;
 	}
 
-	iResult = bind(TelnetListen->Socket, result->ai_addr, (int)result->ai_addrlen);
-	if (iResult == SOCKET_ERROR) 
+	iResult = bind( TelnetListen->Socket, result->ai_addr, (int)result->ai_addrlen );
+
+	if ( Result == SOCKET_ERROR ) 
 	{
 		std::cout << "bind failed with error : " << WSAGetLastError() << std::endl;
-		freeaddrinfo(result);
-		closesocket(TelnetListen->Socket);
+		freeaddrinfo( result );
+		closesocket( TelnetListen->Socket );
 		WSACleanup();
 		delete TelnetListen;
 		return;
 	}
 
-	freeaddrinfo(result);
+	freeaddrinfo( result );
 
 }
 
@@ -73,16 +74,16 @@ void TelnetInterface::Listen()
 
 	std::cout << "Socket Listening" << std::endl;
 
-	while (clientSocket.Socket == INVALID_SOCKET)
+	while ( clientSocket.Socket == INVALID_SOCKET )
 	{
-		listen(TelnetListen->Socket, SOMAXCONN);
-		clientSocket.Socket = accept(TelnetListen->Socket, NULL, NULL);
+		listen( TelnetListen->Socket, SOMAXCONN );
+		clientSocket.Socket = accept( TelnetListen->Socket, NULL, NULL );
 	}
 	
-	if (clientSocket.Socket == INVALID_SOCKET) 
+	if ( clientSocket.Socket == INVALID_SOCKET ) 
 	{
 		std::cout << "accept failed" << WSAGetLastError() << std::endl;
-		closesocket(TelnetListen->Socket);
+		closesocket( TelnetListen->Socket );
 		WSACleanup();
 	}
 	else
@@ -91,9 +92,9 @@ void TelnetInterface::Listen()
 		
 	}
 
-	if (clientSocket.Socket != INVALID_SOCKET)
+	if ( clientSocket.Socket != INVALID_SOCKET )
 	{
-		int smergle = send(clientSocket.Socket, "Bruh", std::string("Bruh").size(), 0);
+		int smergle = send( clientSocket.Socket, "Bruh", std::string("Bruh").size(), 0 );
 		std::cout << smergle << std::endl;
 	}
 }

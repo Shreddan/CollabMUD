@@ -31,17 +31,17 @@ enum Type
 class Item
 {
 public:
-	Item(int mType, int mMaterial, int mLevel, int mWeight);
+	Item( int nType, int nMaterial, int nLevel, int nWeight );
 	~Item();
 
-	virtual void Create(int mType, int mMaterial, int mLevel, int mWeight) = 0;
+	virtual void Create( int nType, int nMaterial, int nLevel, int nWeight ) = 0;
 
 
 private:
 
-	int mType;
-	int mMaterial;
-	int mLevel;
-	int mWeight;
+	int nType;
+	int nMaterial;
+	int nLevel;
+	int nWeight;
 
 };

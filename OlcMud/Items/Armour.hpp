@@ -16,12 +16,12 @@ enum ArmourSlot
 
 class Armour : public Item
 {
-	Armour(int mSlot, int mDefence, int mType, int mMaterial, int mLevel, int mWeight);
+	Armour( int nSlot, int nDefence, int nType, int nMaterial, int nLevel, int nWeight );
 	~Armour();
 
 	virtual void Create();
 
 private:
-	int mSlot;
-	int mDefence;
+	int nSlot;
+	int nDefence;
 };

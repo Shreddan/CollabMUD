@@ -31,8 +31,8 @@ void NetworkInterface::mListenThreadEx()
 
 	while (!mShouldStartListening)
 	{
-		static std::chrono::milliseconds dura(1);
-		std::this_thread::sleep_for(dura);
+		static std::chrono::milliseconds dura( 1 );
+		std::this_thread::sleep_for( dura );
 	}
 
 	mTelnetInterface.Listen();
