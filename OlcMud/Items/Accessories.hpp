@@ -1,44 +1,47 @@
 #pragma once
 #include "Item.hpp"
 
-enum Special1
+namespace EAccessoryTypes
 {
-	None,
-	DamageUP,
-	DodgeUP,
-	StaminaUP,
-	SpeedUP,
-	DefenceUP,
-	AccuracyUP,
-	DamageDWN,
-	DodgeDWN,
-	StaminaDWN,
-	SpeedDWN,
-	DefenceDWN,
-	AccuracyDWN
-};
+	enum Special1
+	{
+		None,
+		DamageUP,
+		DodgeUP,
+		StaminaUP,
+		SpeedUP,
+		DefenceUP,
+		AccuracyUP,
+		DamageDWN,
+		DodgeDWN,
+		StaminaDWN,
+		SpeedDWN,
+		DefenceDWN,
+		AccuracyDWN
+	};
 
-enum Special2
-{
-	None,
-	DamageUP,
-	DodgeUP,
-	StaminaUP,
-	SpeedUP,
-	DefenceUP,
-	AccuracyUP,
-	DamageDWN,
-	DodgeDWN,
-	StaminaDWN,
-	SpeedDWN,
-	DefenceDWN,
-	AccuracyDWN
+	enum Special2
+	{
+		None,
+		DamageUP,
+		DodgeUP,
+		StaminaUP,
+		SpeedUP,
+		DefenceUP,
+		AccuracyUP,
+		DamageDWN,
+		DodgeDWN,
+		StaminaDWN,
+		SpeedDWN,
+		DefenceDWN,
+		AccuracyDWN
+	};
 };
 
 class Accessories : public Item
 {
 public:
-	Accessories( int mSpecial1, int mSpecial2, int mType, int mMaterial, int mLevel, int mWeight );
+	Accessories( int special1, int special2, int type, int material, int level, int weight );
 	~Accessories();
 
 	virtual void Create();

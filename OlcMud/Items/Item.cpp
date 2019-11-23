@@ -1,9 +1,10 @@
 #include "Item.hpp"
 
-Item::Item( int nType, int nMaterial, int nLevel, int nWeight )
+Item::Item( int type, int material, int level, int weight )
 {
 
 }
+
 Item::~Item()
 {
 

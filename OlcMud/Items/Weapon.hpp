@@ -1,28 +1,32 @@
 #pragma once
 #include "Item.hpp"
 
-enum WeaponType
+namespace EWeaponType
 {
-	Dagger,
-	ShortSword,
-	LongSword,
-	Bow,
-	Whip,
-	Mace,
-	WarHammer,
-	Staff
+	enum Weapon
+	{
+		Dagger,
+		ShortSword,
+		LongSword,
+		Bow,
+		Whip,
+		Mace,
+		WarHammer,
+		Staff
+	};
 };
 
 class Weapon : public Item
 {
 public:
-	Weapon( int BaseDamage, int nWeaponType, int nType, int nMaterial, int nLevel, int nWeight );
+	Weapon( int baseDamage, int weaponType, int type, int material, int level, int weight );
 	~Weapon();
 
 	virtual void Create();
 
 private:
 
-	int BaseDamage;
-	int nWeaponType;
+	int mBaseDamage;
+	int mWeaponType;
+	
 };

@@ -1,25 +1,28 @@
 #pragma once
 #include "Item.hpp"
 
-enum ArmourSlot
+namespace EAmourTypes
 {
-	Head,
-	Torso,
-	LWrist,
-	RWrist,
-	Legs,
-	LAnkle,
-	RAnkle
+	enum Slot
+	{
+		Head,
+		Torso,
+		LWrist,
+		RWrist,
+		Legs,
+		LAnkle,
+		RAnkle
+	};
 };
 
 class Armour : public Item
 {
-	Armour( int nSlot, int nDefence, int nType, int nMaterial, int nLevel, int nWeight );
+	Armour( int slot, int defence, int type, int material, int level, int weight );
 	~Armour();
 
 	virtual void Create();
 
 private:
-	int nSlot;
-	int nDefence;
+	int mSlot;
+	int mDefence;
 };

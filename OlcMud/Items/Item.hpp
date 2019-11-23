@@ -1,48 +1,51 @@
 #pragma once
 
-enum Material
+namespace EItemTypes
 {
-	None,
-	Wood,
-	Stone,
-	Copper,
-	Bronze,
-	Iron,
-	Steel,
-	Anicate,
-	Benalite,
-	Danicrute,
-	Fiskite,
-	Javidite,
-	Stackate,
-	Slicite,
-	Tutasite
+	enum Material
+	{
+		None,
+		Wood,
+		Stone,
+		Copper,
+		Bronze,
+		Iron,
+		Steel,
+		Anicate,
+		Benalite,
+		Danicrute,
+		Fiskite,
+		Javidite,
+		Stackate,
+		Slicite,
+		Tutasite
 
-};
+	};
 
-enum Type
-{
-	Weapon,
-	Armour,
-	Potion,
-	Accessory,
-	Special
+	enum Type
+	{
+		Weapon,
+		Armour,
+		Potion,
+		Accessory,
+		Special
+	};
 };
 
 class Item
 {
 public:
-	Item( int nType, int nMaterial, int nLevel, int nWeight );
+	Item( int type, int material, int level, int weight );
 	~Item();
 
-	virtual void Create( int nType, int nMaterial, int nLevel, int nWeight ) = 0;
+	virtual void Create( int type, int material, int level, int weight ) = 0;
 
 
 private:
 
-	int nType;
-	int nMaterial;
-	int nLevel;
-	int nWeight;
+	int mType;
+	int mMaterial;
+	int mLevel;
+	int mWeight;
 
 };
