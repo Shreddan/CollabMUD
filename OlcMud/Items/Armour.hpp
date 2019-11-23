@@ -4,8 +4,6 @@
 enum ArmourSlot
 {
 	Head,
-	LEar,
-	REar,
 	Torso,
 	LWrist,
 	RWrist,

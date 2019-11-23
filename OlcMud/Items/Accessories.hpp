@@ -5,13 +5,33 @@ enum Special1
 	None,
 	DamageUP,
 	DodgeUP,
-
+	StaminaUP,
+	SpeedUP,
+	DefenceUP,
+	AccuracyUP,
+	DamageDWN,
+	DodgeDWN,
+	StaminaDWN,
+	SpeedDWN,
+	DefenceDWN,
+	AccuracyDWN
 };
 
 enum Special2
 {
 	None,
-
+	DamageUP,
+	DodgeUP,
+	StaminaUP,
+	SpeedUP,
+	DefenceUP,
+	AccuracyUP,
+	DamageDWN,
+	DodgeDWN,
+	StaminaDWN,
+	SpeedDWN,
+	DefenceDWN,
+	AccuracyDWN
 };
 
 class Accessories : public Item
