@@ -17,7 +17,7 @@ enum Special2
 class Accessories : public Item
 {
 public:
-	Accessories(int mSpecial1, int mSpecial2, int mType, int mMaterial, int mLevel, int mWeight);
+	Accessories( int mSpecial1, int mSpecial2, int mType, int mMaterial, int mLevel, int mWeight );
 	~Accessories();
 
 	virtual void Create();
