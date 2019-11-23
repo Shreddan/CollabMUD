@@ -12,7 +12,8 @@ namespace EWeaponType
 		Whip,
 		Mace,
 		WarHammer,
-		Staff
+		Staff,
+		Wand
 	};
 };
 
