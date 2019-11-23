@@ -2,6 +2,7 @@
 
 enum Material
 {
+	None,
 	Wood,
 	Stone,
 	Copper,
