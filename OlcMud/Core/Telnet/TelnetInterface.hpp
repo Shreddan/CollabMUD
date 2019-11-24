@@ -80,5 +80,6 @@ public:
 private:
 
 	bool mEscapeListen = false;
+	bool mFailed = false;
 
 };
