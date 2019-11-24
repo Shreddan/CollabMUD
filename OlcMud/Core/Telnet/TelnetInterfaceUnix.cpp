@@ -22,7 +22,7 @@ void TelnetInterface::Init()
     TelnetListen = new TelnetListenSocket();
 
     TelnetListen->Socket = socket( AF_INET, SOCK_STREAM, 0 );
-    TelnetListen->Port = 23;
+    TelnetListen->Port = (unsigned short int)23;
     
     if (TelnetListen->Socket < 0) 
     {
@@ -33,20 +33,20 @@ void TelnetInterface::Init()
 
     }
 
-    memset(&TelnetListen->Address, 0, sizeof(TelnetListen->Address));
+    memset( &TelnetListen->Address, 0, sizeof( TelnetListen->Address ) );
 
 	TelnetListen->Address.sin_family = AF_INET;
-	TelnetListen->Address.sin_addr.s_addr = htonl(INADDR_ANY);
-	TelnetListen->Address.sin_port = htons(23);
+	TelnetListen->Address.sin_addr.s_addr = htonl( INADDR_ANY );
+	TelnetListen->Address.sin_port = htons( TelnetListen->Port );
 
-    bind(TelnetListen->Socket, (struct sockaddr*)&TelnetListen->Address, sizeof(TelnetListen->Address));
+    bind( TelnetListen->Socket, (struct sockaddr*)&TelnetListen->Address, sizeof( TelnetListen->Address ) );
 
 }
 
 void TelnetInterface::Listen() 
 {
 
-    listen(TelnetListen->Socket, 200);
+    listen( TelnetListen->Socket, 200 );
 
 	std::cout << "Socket Listening" << std::endl;
 
@@ -54,10 +54,10 @@ void TelnetInterface::Listen()
     {
 
         ClientSocket client;
-        client.Socket = accept(TelnetListen->Socket, (struct sockaddr*)NULL, NULL);
+        client.Socket = accept( TelnetListen->Socket, (struct sockaddr*)NULL, NULL );
 
-        write(client.Socket, (void*)"Bruh", std::string("Bruh").size());
-        close(client.Socket);
+        write( client.Socket, (void*)"Bruh", std::string( "Bruh" ).size() );
+        close( client.Socket );
 
     }
 

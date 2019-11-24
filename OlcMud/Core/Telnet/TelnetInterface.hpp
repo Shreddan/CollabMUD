@@ -35,10 +35,10 @@ struct TCPSocket
 
 #ifdef __linux__
 	int Socket;
-	sockaddr_in Address;
+	struct sockaddr_in Address;
 #endif
 
-	int Port;
+	unsigned short int Port;
 
 };
 
