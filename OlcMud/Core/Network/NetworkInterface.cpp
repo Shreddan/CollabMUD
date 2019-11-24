@@ -43,6 +43,7 @@ NetworkInterface::~NetworkInterface()
 
 	// Cannot join as listen thread never exits
 	// TODO: dont do this
+	
 	mListenThread.detach();
 
 }

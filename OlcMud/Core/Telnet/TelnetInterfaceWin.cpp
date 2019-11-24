@@ -10,12 +10,6 @@ TelnetInterface::TelnetInterface()
 
 }
 
-TelnetInterface::~TelnetInterface()
-{
-
-}
-
-
 void TelnetInterface::Init()
 {
 
@@ -97,6 +91,11 @@ void TelnetInterface::Listen()
 		int smergle = send( clientSocket.Socket, "Bruh", std::string("Bruh").size(), 0 );
 		std::cout << smergle << std::endl;
 	}
+}
+
+TelnetInterface::~TelnetInterface()
+{
+
 }
 
 #endif

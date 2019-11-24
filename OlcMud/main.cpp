@@ -3,6 +3,8 @@
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
 
+// TODO: Logging system
+
 int main( int argc, char** argv )
 {
 	MudEngine mudEngine;
@@ -15,6 +17,8 @@ int main( int argc, char** argv )
 
 	mudEngine.NetInit();
 	mudEngine.Ready();
+
+	std::cout << "Ready!" << std::endl;
 
 	// Prevent closing
 	getchar();

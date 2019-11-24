@@ -11,9 +11,11 @@
 
 #ifdef __linux__
 
-#include <sys/types.h> 
 #include <sys/socket.h>
+#include <sys/types.h> 
+#include <arpa/inet.h>
 #include <netinet/in.h>
+#include <unistd.h>
 
 #endif
 
@@ -29,14 +31,15 @@ struct TCPSocket
 #ifdef _WIN32
 	SOCKET Socket;
 	WSADATA WSAData;
-	int Port;
 #endif
 
 #ifdef __linux__
 	int Socket;
-	int Port;
+	sockaddr_in Address;
 #endif
-	
+
+	int Port;
+
 };
 
 
@@ -74,5 +77,8 @@ public:
     // to give connections threads (?)
     // ^^ subject to change
 
+private:
+
+	bool mEscapeListen = false;
 
 };
