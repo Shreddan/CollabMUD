@@ -35,12 +35,13 @@ void TelnetInterface::Init()
 
 	TelnetListen->Socket = socket( result->ai_family, result->ai_socktype, result->ai_protocol );
 
-	if (TelnetListen->Socket == INVALID_SOCKET) 
+	if ( TelnetListen->Socket == INVALID_SOCKET ) 
 	{
-		std::cout << "Error at socket() : " << WSAGetLastError() << std::endl;
+		std::cout << "ERROR: Something went wrong when creating a telnet listen socket : " << WSAGetLastError() << std::endl;
 		freeaddrinfo( result );
 		WSACleanup();
 		delete TelnetListen;
+		mFailed = true;
 		return;
 	}
 
@@ -48,11 +49,12 @@ void TelnetInterface::Init()
 
 	if ( iResult == SOCKET_ERROR ) 
 	{
-		std::cout << "bind failed with error : " << WSAGetLastError() << std::endl;
+		std::cout << "ERROR: Something went wrong when binding the telnet listen socket : " << WSAGetLastError() << std::endl;
 		freeaddrinfo( result );
 		closesocket( TelnetListen->Socket );
 		WSACleanup();
 		delete TelnetListen;
+		mFailed = true;
 		return;
 	}
 
@@ -62,6 +64,8 @@ void TelnetInterface::Init()
 
 void TelnetInterface::Listen()
 {
+
+    if (mFailed) return;
 
 	ClientSocket clientSocket;
 	clientSocket.Socket = INVALID_SOCKET;

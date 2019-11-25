@@ -16,9 +16,12 @@ int main( int argc, char** argv )
 		<< std::endl << std::endl << std::endl;
 
 	mudEngine.NetInit();
+
+	// TODO: add a delay to ready or checks
+	// so that it does not start while other
+	// threads are still starting up
 	mudEngine.Ready();
 
-	std::cout << "Ready!" << std::endl;
 
 	// Prevent closing
 	getchar();
