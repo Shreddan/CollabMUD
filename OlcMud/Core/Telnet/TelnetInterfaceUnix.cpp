@@ -41,6 +41,7 @@ void TelnetInterface::Init()
 	TelnetListen->Address.sin_family = AF_INET;
 	TelnetListen->Address.sin_addr.s_addr = htonl( INADDR_ANY );
 
+
     int status = bind( TelnetListen->Socket, (struct sockaddr*)&TelnetListen->Address, sizeof( TelnetListen->Address ) );
 
     if ( status != 0 )
