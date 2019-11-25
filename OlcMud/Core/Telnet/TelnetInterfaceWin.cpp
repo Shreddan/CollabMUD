@@ -46,7 +46,7 @@ void TelnetInterface::Init()
 
 	iResult = bind( TelnetListen->Socket, result->ai_addr, (int)result->ai_addrlen );
 
-	if ( Result == SOCKET_ERROR ) 
+	if ( iResult == SOCKET_ERROR ) 
 	{
 		std::cout << "bind failed with error : " << WSAGetLastError() << std::endl;
 		freeaddrinfo( result );

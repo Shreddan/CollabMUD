@@ -37,7 +37,7 @@ void TelnetInterface::Init()
 
 	TelnetListen->Address.sin_family = AF_INET;
 	TelnetListen->Address.sin_addr.s_addr = htonl(INADDR_ANY);
-	TelnetListen->Address.sin_port = htons(23);
+	TelnetListen->Address.sin_port = 23;
 
     bind(TelnetListen->Socket, (struct sockaddr*)&TelnetListen->Address, sizeof(TelnetListen->Address));
 
