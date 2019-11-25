@@ -11,7 +11,7 @@ int main( int argc, char** argv )
 
 	SettupANSI();
 
-	std::cout << "Welcome to the CollabMud! v"
+	std::cout << "Welcome to the CollabMud v"
 		<< VERSION_MAJOR << "." << VERSION_MINOR
 		<< std::endl << std::endl << std::endl;
 
