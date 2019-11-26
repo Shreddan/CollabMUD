@@ -3,6 +3,7 @@
 
 #include "TelnetInterface.hpp"
 
+#include "TelnetConnectionManager.hpp"
 
 TelnetInterface::TelnetInterface()
 {
@@ -10,11 +11,13 @@ TelnetInterface::TelnetInterface()
 
 }
 
-void TelnetInterface::Init()
+void TelnetInterface::Init( TelnetConnection* telnetConnection )
 {
 
 	if ( TelnetListen != nullptr )
 		return;
+
+	mTelnetConnection = telnetConnection;
 
 	TelnetListen = new TelnetListenSocket();
 

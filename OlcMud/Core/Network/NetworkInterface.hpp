@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Telnet/TelnetConnectionManager.hpp"
 #include "../Telnet/TelnetInterface.hpp"
 
 #include <thread>
@@ -15,6 +16,11 @@ public:
 	void Listen();
 
 private:
+
+	// Telnet connection manager
+	// manages communications with
+	// active connections to the server
+	TelnetConnection mTelnetConnection;
 	
 	TelnetInterface mTelnetInterface;
 

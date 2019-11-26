@@ -53,6 +53,7 @@ struct ClientSocket : public TCPSocket
 
 };
 
+class TelnetConnection;
 
 // Telnet implementations 
 // Somewhat high level
@@ -65,19 +66,19 @@ public:
 	~TelnetInterface();
 
 	// Initialise the listening socket
-	void Init();
+	void Init(TelnetConnection* telnetConnection);
 
 	// Does not return, do not call 
 	// on main thread
 	void Listen();
 
+	// The listening socket its self
 	TelnetListenSocket* TelnetListen = nullptr;
 
-    // Not up to the telnet interface
-    // to give connections threads (?)
-    // ^^ subject to change
-
 private:
+
+	// Owned by parent
+	TelnetConnection* mTelnetConnection;
 
 	bool mEscapeListen = false;
 	bool mFailed = false;

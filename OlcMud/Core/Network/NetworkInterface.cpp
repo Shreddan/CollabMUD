@@ -2,6 +2,7 @@
 
 NetworkInterface::NetworkInterface()
 	: mTelnetInterface()
+	, mTelnetConnection()
 {
 
 }
@@ -9,7 +10,7 @@ NetworkInterface::NetworkInterface()
 void NetworkInterface::Init()
 {
 
-	mTelnetInterface.Init();
+	mTelnetInterface.Init(&mTelnetConnection);
 
 	mListenThread = std::thread([&]() {
 		mListenThreadEx();
