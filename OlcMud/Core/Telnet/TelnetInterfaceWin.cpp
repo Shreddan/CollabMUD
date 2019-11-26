@@ -79,24 +79,13 @@ void TelnetInterface::Listen()
 
 		while ( clientSocket.Socket == INVALID_SOCKET )
 		{
-
 			listen( TelnetListen->Socket, SOMAXCONN );
 			clientSocket.Socket = accept( TelnetListen->Socket, NULL, NULL );
 		}
 
-		if ( clientSocket.Socket == INVALID_SOCKET ) 
-		{
-			std::cout << "Socket Connect Failed : " << WSAGetLastError() << std::endl;
-			closesocket( TelnetListen->Socket );
-			continue;
-		}
-		else
-		{
-			std::cout << "Connection Established" << std::endl;
-			send( clientSocket.Socket, "Bruh", std::string( "Bruh" ).size(), 0 );
-			closesocket( clientSocket.Socket );
-			std::cout << "connection closed" << std::endl;
-		}
+		std::cout << "Connection Established" << std::endl;
+		send( clientSocket.Socket, "Bruh", std::string( "Bruh" ).size(), 0 );
+		closesocket( clientSocket.Socket );
 
 	}
 
