@@ -54,13 +54,15 @@ void TelnetInterface::Init()
         return;
 
     }
+	
+	std::cout << "Socket Created" << std::endl;
 
 }
 
 void TelnetInterface::Listen() 
 {
 
-    if (mFailed) return;
+    if ( mFailed ) return;
 
     listen( TelnetListen->Socket, 200 );
 
@@ -71,6 +73,7 @@ void TelnetInterface::Listen()
 
         ClientSocket client;
         client.Socket = accept( TelnetListen->Socket, (struct sockaddr*)NULL, NULL );
+		std::cout << "Connection Established" << std::endl;
 
         write( client.Socket, (void*)"Bruh\n", std::string( "Bruh\n" ).size() );
         close( client.Socket );

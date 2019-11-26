@@ -60,46 +60,54 @@ void TelnetInterface::Init()
 
 	freeaddrinfo( result );
 
+	std::cout << "Socket Created" << std::endl;
+
 }
 
 void TelnetInterface::Listen()
 {
 
-    if (mFailed) return;
-
-	ClientSocket clientSocket;
-	clientSocket.Socket = INVALID_SOCKET;
+	if ( mFailed ) return;
 
 	std::cout << "Socket Listening" << std::endl;
 
-	while ( clientSocket.Socket == INVALID_SOCKET )
+	while ( !mEscapeListen )
 	{
-		listen( TelnetListen->Socket, SOMAXCONN );
-		clientSocket.Socket = accept( TelnetListen->Socket, NULL, NULL );
-	}
-	
-	if ( clientSocket.Socket == INVALID_SOCKET ) 
-	{
-		std::cout << "accept failed" << WSAGetLastError() << std::endl;
-		closesocket( TelnetListen->Socket );
-		WSACleanup();
-	}
-	else
-	{
-		std::cout << "Connection Established" << std::endl;
-		
+
+		ClientSocket clientSocket;
+		clientSocket.Socket = INVALID_SOCKET;
+
+		while ( clientSocket.Socket == INVALID_SOCKET )
+		{
+
+			listen( TelnetListen->Socket, SOMAXCONN );
+			clientSocket.Socket = accept( TelnetListen->Socket, NULL, NULL );
+		}
+
+		if ( clientSocket.Socket == INVALID_SOCKET ) 
+		{
+			std::cout << "Socket Connect Failed : " << WSAGetLastError() << std::endl;
+			closesocket( TelnetListen->Socket );
+			continue;
+		}
+		else
+		{
+			std::cout << "Connection Established" << std::endl;
+			send( clientSocket.Socket, "Bruh", std::string( "Bruh" ).size(), 0 );
+			closesocket( clientSocket.Socket );
+			std::cout << "connection closed" << std::endl;
+		}
+
 	}
 
-	if ( clientSocket.Socket != INVALID_SOCKET )
-	{
-		int smergle = send( clientSocket.Socket, "Bruh", std::string("Bruh").size(), 0 );
-		std::cout << smergle << std::endl;
-	}
 }
 
 TelnetInterface::~TelnetInterface()
 {
-
+	closesocket( TelnetListen->Socket );
+	WSACleanup();
+	delete TelnetListen;
+	mFailed = true;
 }
 
 #endif
