@@ -85,7 +85,6 @@ void TelnetInterface::Listen()
 
 		std::cout << "Connection Established" << std::endl;
 		send( clientSocket.Socket, "Bruh", std::string( "Bruh" ).size(), 0 );
-		closesocket( clientSocket.Socket );
 
 	}
 
