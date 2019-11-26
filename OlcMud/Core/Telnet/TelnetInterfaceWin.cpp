@@ -77,17 +77,56 @@ void TelnetInterface::Listen()
 	while ( !mEscapeListen )
 	{
 
-		ClientSocket clientSocket;
-		clientSocket.Socket = INVALID_SOCKET;
+		ClientSocket client;
+		client.Socket = INVALID_SOCKET;
 
-		while ( clientSocket.Socket == INVALID_SOCKET )
+		int addrlen = sizeof( client.Address );
+
+		while ( client.Socket == INVALID_SOCKET )
 		{
 			listen( TelnetListen->Socket, SOMAXCONN );
-			clientSocket.Socket = accept( TelnetListen->Socket, NULL, NULL );
+			client.Socket = accept( TelnetListen->Socket, (SOCKADDR*)& client.Address, &addrlen );
 		}
 
-		std::cout << "Connection Established" << std::endl;
-		send( clientSocket.Socket, "Bruh", std::string( "Bruh" ).size(), 0 );
+		std::string ip = static_cast<std::string>( inet_ntoa( client.Address.sin_addr ) );
+
+		std::cout << "Connection Established : " << ip << std::endl;
+		
+		send( client.Socket, "Welcome To CollabMud\n", std::string( "Welcome To CollabMud\n" ).size(), 0 );
+
+#define DEFAULT_BUFLEN 512
+
+		char recvbuf[DEFAULT_BUFLEN];
+		int iResult, iSendResult;
+		int recvbuflen = DEFAULT_BUFLEN;
+
+		// Receive until the peer shuts down the connection
+		do {
+
+			iResult = recv( client.Socket, recvbuf, recvbuflen, 0 );
+			if ( iResult > 0 ) {
+				printf( "Bytes received: %d\n", iResult );
+
+				// Echo the buffer back to the sender
+				iSendResult = send( client.Socket, recvbuf, iResult, 0 );
+				if ( iSendResult == SOCKET_ERROR ) {
+					printf( "send failed: %d\n", WSAGetLastError() );
+					closesocket( client.Socket );
+					WSACleanup();
+					return;
+				}
+				printf( "Bytes sent: %d\n", iSendResult );
+			}
+			else if ( iResult == 0 )
+				printf( "Connection closing...\n" );
+			else {
+				printf( "recv failed: %d\n", WSAGetLastError() );
+				closesocket( client.Socket );
+				WSACleanup();
+				return;
+			}
+
+		} while ( iResult > 0 );
 
 	}
 

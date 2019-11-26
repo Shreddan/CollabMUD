@@ -51,6 +51,10 @@ struct TelnetListenSocket : public TCPSocket
 struct ClientSocket : public TCPSocket 
 {
 
+#ifdef _WIN32
+	sockaddr_in Address;
+#endif
+
 };
 
 class TelnetConnection;
@@ -78,7 +82,7 @@ public:
 private:
 
 	// Owned by parent
-	TelnetConnection* mTelnetConnection;
+	TelnetConnection* mTelnetConnection = nullptr;
 
 	bool mEscapeListen = false;
 	bool mFailed = false;

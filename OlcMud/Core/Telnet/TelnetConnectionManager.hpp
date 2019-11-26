@@ -4,6 +4,9 @@ class TelnetConnection
 {
 public:
 
+	TelnetConnection();
+	~TelnetConnection();
+
 
 
 private:

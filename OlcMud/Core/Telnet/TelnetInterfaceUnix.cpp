@@ -72,10 +72,16 @@ void TelnetInterface::Listen()
     {
 
         ClientSocket client;
-        client.Socket = accept( TelnetListen->Socket, (struct sockaddr*)NULL, NULL );
-		std::cout << "Connection Established" << std::endl;
 
-        write( client.Socket, (void*)"Bruh\n", std::string( "Bruh\n" ).size() );
+		int addrlen = sizeof( client.Address );
+        client.Socket = accept( TelnetListen->Socket, (struct sockaddr*)client.Address, addrlen );
+		
+		std::string ip = new std::string( INET_ADDRSTRLEN, "" );
+		inet_ntop( AF_INET, &client.Address->sin_addr, &ip.data, INET_ADDRSTRLEN );
+		
+		std::cout << "Connection Established : " << ip << std::endl;
+
+        write( client.Socket, (void*)"Welcome To CollabMud\n", std::string( "Welcome To CollabMud\n" ).size() );
         close( client.Socket );
 
     }

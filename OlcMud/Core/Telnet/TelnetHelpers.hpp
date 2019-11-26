@@ -49,4 +49,3 @@
 #define TENLET_DO			253
 #define TENLET_DONT	    	254
 #define TENLET_IAC			255
-
