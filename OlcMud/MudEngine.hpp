@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core/Network/NetworkInterface.hpp"
+#include "Core/Commands/Commands.hpp"
 
 #include "Util/ConsoleANSI.hpp"
 
@@ -15,8 +16,12 @@ public:
 
 	void Ready();
 
+	void TempMessage(std::string &temp);
+
+	std::string temp;
+
 private:
 	NetworkInterface mNetworkInterface;
-
+	Commands mCommands;
 };
 

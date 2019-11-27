@@ -37,6 +37,7 @@ file(GLOB SourceFiles
 	${SrcDIR}/Util/*
 	${SrcDIR}/Core/Network/*
 	${SrcDIR}/Core/Telnet/*
+	${SrcDIR}/Core/Commands/*
 	${SrcDIR}/Items/*
 )
 

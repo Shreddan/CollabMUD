@@ -6,9 +6,15 @@ MudEngine::MudEngine()
 
 }
 
+MudEngine::~MudEngine()
+{
+
+}
+
 void MudEngine::NetInit()
 {
 
+	GameInit();
 	mNetworkInterface.Init();
 
 }
@@ -22,10 +28,13 @@ void MudEngine::Ready()
 {
 	
 	mNetworkInterface.Listen();
-
+	
 }
 
-MudEngine::~MudEngine()
+void MudEngine::TempMessage(std::string & temp)
 {
-
+	mCommands.regexify(temp);
+	mCommands.commandlist(mCommands.sm);
 }
+
+
