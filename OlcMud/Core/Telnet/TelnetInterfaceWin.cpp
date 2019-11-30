@@ -85,7 +85,7 @@ void TelnetInterface::Listen()
 		while ( client.Socket == INVALID_SOCKET )
 		{
 			listen( TelnetListen->Socket, SOMAXCONN );
-			client.Socket = accept( TelnetListen->Socket, (SOCKADDR*)& client.Address, &addrlen );
+			client.Socket = accept( TelnetListen->Socket, (SOCKADDR*)&client.Address, &addrlen );
 		}
 
 		std::string ip = static_cast<std::string>( inet_ntoa( client.Address.sin_addr ) );
