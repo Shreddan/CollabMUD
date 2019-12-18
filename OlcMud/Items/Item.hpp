@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace EItemTypes
 {
 	enum Material
@@ -35,7 +37,7 @@ namespace EItemTypes
 class Item
 {
 public:
-	Item( int type, int material, int level, int weight );
+	Item( std::string name, int type, int material, int level, int weight );
 	~Item();
 
 	virtual void Create( int type, int material, int level, int weight ) = 0;
@@ -43,6 +45,7 @@ public:
 
 private:
 
+	std::string name;
 	int mType;
 	int mMaterial;
 	int mLevel;
