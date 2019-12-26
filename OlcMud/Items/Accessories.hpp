@@ -26,7 +26,7 @@ class Accessories : public Item
 {
 public:
 	Accessories();
-	Accessories( std::string name, int special1, int special2, int type, int material, int level, int weight );
+	Accessories( int special1, int special2, std::string name, int type, int material, int level, int weight );
 	~Accessories();
 
 	virtual void Create();

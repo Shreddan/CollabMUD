@@ -78,9 +78,18 @@ void ItemInterface::addAccessories(std::vector<Accessories>& accessories)
 		std::cout << "No Accessories Found" << std::endl;
 	}
 
-	for (const auto accessories : js["Accessories"])
+	for (const auto accessories1 : js["Accessories"])
 	{
+		Accessories a;
+		a.mSpecial1 = accessories1["special1"];
+		a.mSpecial2 = accessories1["special2"];
+		a.name = accessories1["name"];
+		a.mType = accessories1["type"];
+		a.mMaterial = accessories1["material"];
+		a.mLevel = accessories1["level"];
+		a.mWeight = accessories1["weight"];
 
+		accessories.emplace_back(a);
 	}
 }
 
