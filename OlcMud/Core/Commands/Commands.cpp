@@ -32,6 +32,15 @@ void Commands::commandlist(std::smatch &sm)
 		}
 		
 	}
+	else if (sm[1] == "at" || sm[1] == "armourtest")
+	{
+		std::cout << items.armours.size() << std::endl;
+		for (size_t i = 0; i < items.armours.size(); i++)
+		{
+			std::cout << "Weapon :  " << items.armours[i].name << std::endl;
+			std::cout << "Level  :  " << items.armours[i].mLevel << std::endl;
+		}
+	}
 	else if (sm[1] == "q" || sm[1] == "quit")
 	{
 		std::cout << "Shutting down" << std::endl;

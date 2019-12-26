@@ -44,7 +44,7 @@ void ItemInterface::addArmour(std::vector<Armour>& armours)
 	std::ifstream if1("C:/Users/User/source/repos/Shreddan/CollabMUD/OlcMud/Resources/Armour.json");
 	if (if1.good())
 	{
-		json::parse(if1);
+		js = json::parse(if1);
 	}
 	else
 	{
@@ -53,7 +53,16 @@ void ItemInterface::addArmour(std::vector<Armour>& armours)
 
 	for (const auto armour : js["Armour"])
 	{
+		Armour a;
+		a.slot = armour["slot"];
+		a.defence = armour["defence"];
+		a.name = armour["name"];
+		a.mType = armour["type"];
+		a.mMaterial = armour["material"];
+		a.mLevel = armour["level"];
+		a.mWeight = armour["weight"];
 
+		armours.emplace_back(a);
 	}
 }
 
@@ -62,11 +71,16 @@ void ItemInterface::addAccessories(std::vector<Accessories>& accessories)
 	std::ifstream if1("C:/Users/User/source/repos/Shreddan/CollabMUD/OlcMud/Resources/Accessories.json");
 	if (if1.good())
 	{
-
+		js = json::parse(if1);
 	}
 	else
 	{
 		std::cout << "No Accessories Found" << std::endl;
+	}
+
+	for (const auto accessories : js["Accessories"])
+	{
+
 	}
 }
 
@@ -75,7 +89,7 @@ void ItemInterface::addPotions(std::vector<Potion>& potions)
 	std::ifstream if1("C:/Users/User/source/repos/Shreddan/CollabMUD/OlcMud/Resources/Potions.json");
 	if (if1.good())
 	{
-
+		js = json::parse(if1);
 	}
 	else
 	{
