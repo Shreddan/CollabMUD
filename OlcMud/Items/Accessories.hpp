@@ -25,12 +25,12 @@ namespace EAccessoryTypes
 class Accessories : public Item
 {
 public:
-	Accessories( int special1, int special2, int type, int material, int level, int weight );
+	Accessories();
+	Accessories( std::string name, int special1, int special2, int type, int material, int level, int weight );
 	~Accessories();
 
 	virtual void Create();
 
-private:
 	int mSpecial1;
 	int mSpecial2;
 };

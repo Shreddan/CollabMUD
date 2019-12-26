@@ -1,7 +1,11 @@
 #include "Armour.hpp"
 
-Armour::Armour( int slot, int defence, int type, int material, int level, int weight ) 
-	: Item( type, material, level, weight )
+Armour::Armour()
+{
+}
+
+Armour::Armour( int slot, int defence, std::string name, int type, int material, int level, int weight )
+	: Item( name, type, material, level, weight )
 {
 
 }

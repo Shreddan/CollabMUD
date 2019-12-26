@@ -9,6 +9,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "../Util/single_include/nlohmann/json.hpp"
+
 class ItemInterface
 {
 public:
@@ -24,5 +26,7 @@ public:
 	std::vector<Armour> armours;
 	std::vector<Accessories> accessories;
 	std::vector<Potion> potions;
+
+	nlohmann::json js;
 
 };

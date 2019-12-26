@@ -2,6 +2,7 @@
 
 #include "Core/Network/NetworkInterface.hpp"
 #include "Core/Commands/Commands.hpp"
+#include "Items/ItemInterface.hpp"
 
 #include "Util/ConsoleANSI.hpp"
 

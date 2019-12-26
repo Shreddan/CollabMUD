@@ -22,6 +22,16 @@ void Commands::commandlist(std::smatch &sm)
 	{
 		std::cout << "You see a vast emptiness, there is nothing here yet" << std::endl;
 	}
+	else if (sm[1] == "wt" || sm[1] == "weapontest")
+	{
+		std::cout << items.weapons.size() << std::endl;
+		for (size_t i = 0; i < items.weapons.size(); i++)
+		{
+			std::cout << "Weapon :  " << items.weapons[i].name << std::endl;
+			std::cout << "Level  :  " << items.weapons[i].mLevel << std::endl;
+		}
+		
+	}
 	else if (sm[1] == "q" || sm[1] == "quit")
 	{
 		std::cout << "Shutting down" << std::endl;

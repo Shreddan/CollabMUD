@@ -37,13 +37,11 @@ namespace EItemTypes
 class Item
 {
 public:
+	Item();
 	Item( std::string name, int type, int material, int level, int weight );
 	~Item();
 
-	virtual void Create( int type, int material, int level, int weight ) = 0;
-
-
-private:
+	virtual void Create() = 0;
 
 	std::string name;
 	int mType;

@@ -18,12 +18,13 @@ namespace EAmourTypes
 
 class Armour : public Item
 {
-	Armour( int slot, int defence, int type, int material, int level, int weight );
+public:
+	Armour();
+	Armour( int slot, int defence, std::string name, int type, int material, int level, int weight );
 	~Armour();
 
 	virtual void Create();
 
-private:
-	int mSlot;
-	int mDefence;
+	int slot;
+	int defence;
 };

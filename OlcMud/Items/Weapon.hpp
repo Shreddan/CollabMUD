@@ -21,14 +21,13 @@ namespace EWeaponType
 class Weapon : public Item
 {
 public:
-	Weapon( int baseDamage, int weaponType, int type, int material, int level, int weight );
+	Weapon();
+	Weapon( int baseDamage, int weaponType, std::string name, int type, int material, int level, int weight );
 	~Weapon();
 
 	virtual void Create();
 
-private:
-
-	int mBaseDamage;
-	int mWeaponType;
+	int baseDamage;
+	int weaponType;
 	
 };

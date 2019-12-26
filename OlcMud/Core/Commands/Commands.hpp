@@ -2,6 +2,8 @@
 #include <iostream>
 #include <regex>
 
+#include "../../Items/ItemInterface.hpp"
+
 class Commands
 {
 public:
@@ -15,4 +17,6 @@ public:
 	std::smatch sm;
 
 	bool Close;
+
+	ItemInterface items;
 };

@@ -28,12 +28,12 @@ namespace EPotionTypes
 class Potion : public Item
 {
 public:
-	Potion( int effect, int duration, int type, int material, int level, int weight );
+	Potion();
+	Potion( std::string name, int effect, int duration, int type, int material, int level, int weight );
 	~Potion();
 
 	virtual void Create();
 
-private:
 	int mEffect;
 	int mDuration;
 };

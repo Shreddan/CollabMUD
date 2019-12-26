@@ -28,7 +28,12 @@ void MudEngine::Ready()
 {
 	
 	mNetworkInterface.Listen();
-	
+	mCommands.items.addWeapons(mCommands.items.weapons);
+	while (!mCommands.Close)
+	{
+		std::getline(std::cin, temp);
+		TempMessage(temp);
+	}
 }
 
 void MudEngine::TempMessage(std::string & temp)

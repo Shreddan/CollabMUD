@@ -24,7 +24,7 @@ int main( int argc, char** argv )
 
 
 	// Prevent closing
-	getchar();
+	//getchar();
 
 	return 0;
 
