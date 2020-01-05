@@ -16,12 +16,10 @@ namespace EPotionTypes
 
 	enum Duration
 	{
-		VeryShort,
+		Instant,
 		Short,
 		Medium,
 		Long,
-		VeryLong,
-		Epic
 	};
 };
 
@@ -29,11 +27,12 @@ class Potion : public Item
 {
 public:
 	Potion();
-	Potion( std::string name, int effect, int duration, int type, int material, int level, int weight );
+	//Potion(std::string name, int type, int material, int level, int weight, int effect, int duration, int hpGain = 0 );
 	~Potion();
 
 	virtual void Create();
 
 	int mEffect;
 	int mDuration;
+	int hpGain;
 };

@@ -104,4 +104,19 @@ void ItemInterface::addPotions(std::vector<Potion>& potions)
 	{
 		std::cout << "No Potions Found" << std::endl;
 	}
+
+	for (const auto potion : js["Potions"])
+	{
+		Potion p;
+		p.mEffect = potion["effect"];
+		p.mDuration = potion["duration"];
+		p.name = potion["name"];
+		p.mType = potion["type"];
+		p.mMaterial = potion["material"];
+		p.mLevel = potion["level"];
+		p.mWeight = potion["weight"];
+		p.hpGain = potion["hpGain"];
+
+		potions.emplace_back(p);
+	}
 }

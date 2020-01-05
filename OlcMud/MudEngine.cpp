@@ -31,6 +31,7 @@ void MudEngine::Ready()
 	mCommands.items.addWeapons(mCommands.items.weapons);
 	mCommands.items.addArmour(mCommands.items.armours);
 	mCommands.items.addAccessories(mCommands.items.accessories);
+	mCommands.items.addPotions(mCommands.items.potions);
 	while (!mCommands.Close)
 	{
 		std::getline(std::cin, temp);
