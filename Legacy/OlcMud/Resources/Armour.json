@@ -1,0 +1,70 @@
+{
+    "Armour":[
+        {
+          "slot": 0,
+          "defence": 1,
+          "name": "Helmet",
+          "type": 1,
+          "material": 1,
+          "level": 1,
+          "weight": 1
+        },
+        {
+          "slot": 1,
+          "defence": 4,
+          "name": "Breastplate",
+          "type": 1,
+          "material": 1,
+          "level": 1,
+          "weight": 3
+        },
+        {
+          "slot": 2,
+          "defence": 1,
+          "name": "Left Vambrace",
+          "type": 1,
+          "material": 1,
+          "level": 1,
+          "weight": 1
+        },
+      {
+        "slot": 3,
+        "defence": 1,
+        "name": "Right Vambrace",
+        "type": 1,
+        "material": 1,
+        "level": 1,
+        "weight": 1
+      },
+      {
+        "slot": 4,
+        "defence": 2,
+        "name": "Plateskirt",
+        "type": 1,
+        "material": 1,
+        "level": 1,
+        "weight": 2
+      },
+      {
+        "slot": 5,
+        "defence": 1,
+        "name": "Left Greave",
+        "type": 1,
+        "material": 1,
+        "level": 1,
+        "weight": 1
+      },
+      {
+        "slot": 6,
+        "defence": 1,
+        "name": "Right Greave",
+        "type": 1,
+        "material": 1,
+        "level": 1,
+        "weight": 1
+      }
+
+  ] 
+
+
+}

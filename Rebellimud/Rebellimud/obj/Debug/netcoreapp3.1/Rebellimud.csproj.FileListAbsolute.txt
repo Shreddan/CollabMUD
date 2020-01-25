@@ -1,0 +1,11 @@
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\bin\Debug\netcoreapp3.1\Rebellimud.exe
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\bin\Debug\netcoreapp3.1\Rebellimud.deps.json
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\bin\Debug\netcoreapp3.1\Rebellimud.runtimeconfig.json
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\bin\Debug\netcoreapp3.1\Rebellimud.runtimeconfig.dev.json
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\bin\Debug\netcoreapp3.1\Rebellimud.dll
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\bin\Debug\netcoreapp3.1\Rebellimud.pdb
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.csprojAssemblyReference.cache
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.AssemblyInfo.cs
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.dll
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.pdb
