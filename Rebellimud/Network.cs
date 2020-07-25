@@ -38,18 +38,25 @@ namespace Rebellimud
 
         private static void ReceiveCallBack(IAsyncResult ar)
         {
-            Socket socket = (Socket)ar.AsyncState;
-            int received = socket.EndReceive(ar);
-            byte[] dBuf = new byte[received];
-            Array.Copy(buffer, dBuf, received);
-            string text = Encoding.ASCII.GetString(dBuf);
-            Console.WriteLine("Text Received : " + text);
+            try
+            {
+                Socket socket = (Socket)ar.AsyncState;
+                int received = socket.EndReceive(ar);
+                byte[] dBuf = new byte[received];
+                Array.Copy(buffer, dBuf, received);
+                string text = Encoding.ASCII.GetString(dBuf);
+                Console.WriteLine("Text Received : " + text);
 
-            Parse(text, socket);
+                Parse(text, socket);
 
-            byte[] data = Encoding.ASCII.GetBytes(response);
-            socket.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(SendCallBack), socket);
-            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallBack), socket);
+                byte[] data = Encoding.ASCII.GetBytes(response);
+                socket.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(SendCallBack), socket);
+                socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallBack), socket);
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         private static void SendCallBack(IAsyncResult ar)
@@ -67,17 +74,23 @@ namespace Rebellimud
             {
                 case "register":
                     {
-                        Users.OpenDB();
                         Users.InsertTable(temptext[1], temptext[2], temptext[3]);
-                        Users.ReadTable();
-                        Users.CloseDB();
+                        response = Users.ReadTable();
                         break;
                     }
 
                 case "login":
                     {
-                        Users.OpenDB();
-                        Users.
+                        bool temp = Users.CheckTable(temptext[1]);
+                        if (!temp)
+                        {
+                            response = "<001>User does not Exist";
+                        }
+                        else
+                        {
+                            response = Users.ReadTable(temptext[1]);
+                        }
+                        
                         break;
                     }
 

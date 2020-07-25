@@ -9,9 +9,11 @@ namespace Rebellimud
     {
         public static SqliteConnectionStringBuilder connectionStringBuilder;
         public static SqliteConnection conn;
+        public static SqliteCommand dropTable;
         public static SqliteCommand delTable;
         public static SqliteCommand createTable;
         public static SqliteCommand checkTable;
+        public static SqliteCommand updateTable;
         public static SqliteCommand insertTable;
         public static SqliteCommand selectTable;
         public static SqliteTransaction transaction;
@@ -38,10 +40,18 @@ namespace Rebellimud
         {
             try
             {
-                delTable = conn.CreateCommand();
-                delTable.CommandText = "DROP TABLE IF EXISTS User";
-                var num = delTable.ExecuteNonQuery();
-                Console.WriteLine("Entries changed : " + num);
+                using (conn = new SqliteConnection(connectionStringBuilder.ConnectionString))
+                {
+                    conn.Open();
+                    dropTable = conn.CreateCommand();
+                    dropTable.CommandText = "DROP TABLE IF EXISTS User";
+                    var num = dropTable.ExecuteNonQuery();
+                    Console.WriteLine("Entries changed : " + num);
+                    if (num < 1)
+                    {
+                        CreateTable();
+                    }
+                }
             }
             catch (SqliteException e)
             {
@@ -53,9 +63,13 @@ namespace Rebellimud
         {
             try
             {
-                createTable = conn.CreateCommand();
-                createTable.CommandText = "CREATE TABLE User(name VARCHAR(12), ID , pass VARCHAR(12), level int, class char(12))";
-                createTable.ExecuteNonQuery();
+                using (conn = new SqliteConnection(connectionStringBuilder.ConnectionString))
+                {
+                    conn.Open();
+                    createTable = conn.CreateCommand();
+                    createTable.CommandText = "CREATE TABLE User(Username VARCHAR(12), Pass VARCHAR(12), Level int, Class char(12))";
+                    createTable.ExecuteNonQuery();
+                }
             }
             catch (SqliteException e)
             {
@@ -63,25 +77,71 @@ namespace Rebellimud
             }
         }
 
-        public static void CheckTable()
+        public static bool CheckTable(string name)
         {
-            checkTable = conn.CreateCommand();
-            checkTable.CommandText = "WHERE";
+            try
+            {
+                using (conn = new SqliteConnection(connectionStringBuilder.ConnectionString))
+                {
+                    conn.Open();
+                    checkTable = conn.CreateCommand();
+                    checkTable.CommandText = "SELECT Username FROM User WHERE EXISTS (SELECT Username FROM User WHERE User.Username = @username)";
+
+                    checkTable.Parameters.AddWithValue("@username", name);
+                    checkTable.Prepare();
+
+                    using (var reader = checkTable.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var message = reader.GetString(0);
+                            Console.WriteLine(message);
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqliteException e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            
+        }
+
+        public static void DeleteTable()
+        {
+
         }
 
         public static void InsertTable(string name, string pass, string aclass)
         {
             try
             {
-                using (transaction = conn.BeginTransaction())
+                using (conn = new SqliteConnection(connectionStringBuilder.ConnectionString))
                 {
-                    insertTable = conn.CreateCommand();
+                    conn.Open();
+                    using (transaction = conn.BeginTransaction())
+                    {
+                        insertTable = conn.CreateCommand();
 
-                    insertTable.CommandText = "INSERT INTO User VALUES(" + name + "," + pass + ", 1, " + aclass + ")";
-                    var num = insertTable.ExecuteNonQuery();
-                    Console.WriteLine("Entries changed : " + num);
+                        insertTable.CommandText = "INSERT INTO User(Username, Pass, Level, Class) VALUES(@name, @pass, 1, @class)";
 
-                    transaction.Commit();
+                        insertTable.Parameters.AddWithValue("@name", name);
+                        insertTable.Parameters.AddWithValue("@pass", pass);
+                        insertTable.Parameters.AddWithValue("@class", aclass);
+
+                        insertTable.Prepare();
+
+                        var num = insertTable.ExecuteNonQuery();
+                        Console.WriteLine("Entries changed : " + num);
+
+                        transaction.Commit();
+                    }
                 }
             }
             catch (SqliteException e)
@@ -90,45 +150,60 @@ namespace Rebellimud
             }
         }
 
-        public static void ReadTable()
+        public static string ReadTable()
         {
+            
             try
             {
-                selectTable = conn.CreateCommand();
-                selectTable.CommandText = "SELECT * FROM USER";
-
-                using (var reader = selectTable.ExecuteReader())
+                using (conn = new SqliteConnection(connectionStringBuilder.ConnectionString))
                 {
-                    var i = 0;
-                    while (reader.Read())
+                    object[] obj = new object[5];
+                    conn.Open();
+                    selectTable = conn.CreateCommand();
+                    selectTable.CommandText = "SELECT * FROM User";
+
+                    using (var reader = selectTable.ExecuteReader())
                     {
-                        message = reader.GetString(i);
-                        Console.WriteLine(message);
-                        i++;
+                        while (reader.Read())
+                        {
+                            reader.GetValues(obj);
+                        }
                     }
+                    string temp = obj.ToString();
+                    return temp;
                 }
+
             }
             catch(SqliteException e)
             {
                 Console.WriteLine(e);
+                return string.Empty;
             }
 
         }
 
         public static string ReadTable(string tableName)
         {
+            object[] obj = new object[5];
             try
             {
-                selectTable = conn.CreateCommand();
-                selectTable.CommandText = "SELECT" + tableName + " FROM USER";
-
-                using (var reader = selectTable.ExecuteReader())
+                using (conn = new SqliteConnection(connectionStringBuilder.ConnectionString))
                 {
-                    while (reader.Read())
+                    conn.Open();
+                    selectTable = conn.CreateCommand();
+                    selectTable.CommandText = "SELECT @tablename FROM User";
+
+                    selectTable.Parameters.AddWithValue("@tablename", tableName);
+
+                    using (var reader = selectTable.ExecuteReader())
                     {
-                        message = reader.GetString(0);
+                        while (reader.Read())
+                        {
+                            reader.GetValues(obj);
+                        }
+                        message = obj.ToString();
+                        return message;
                     }
-                    return message;
                 }
             }
             catch(SqliteException e)
@@ -138,9 +213,5 @@ namespace Rebellimud
             }
         }
 
-        public static void CloseDB()
-        {
-            conn.Close();
-        }
     }
 }
