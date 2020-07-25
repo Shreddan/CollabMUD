@@ -21,6 +21,7 @@ namespace Rebellimud
         public static void Setup()
         {
             Console.WriteLine("Setting up Server");
+            Users.Setup();
             serverSock.Bind(new IPEndPoint(IPAddress.Any, 100));
             serverSock.Listen(10);
             serverSock.BeginAccept(new AsyncCallback(AcceptCallBack), null);
@@ -44,7 +45,7 @@ namespace Rebellimud
             string text = Encoding.ASCII.GetString(dBuf);
             Console.WriteLine("Text Received : " + text);
 
-            Parse(text);
+            Parse(text, socket);
 
             byte[] data = Encoding.ASCII.GetBytes(response);
             socket.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(SendCallBack), socket);
@@ -57,28 +58,54 @@ namespace Rebellimud
             socket.EndSend(ar);
         }
 
-        private static void Parse(string text)
+        private static void Parse(string text, Socket socket)
         {
             text = text.ToLower();
+            string[] temptext = text.Split(" ");
 
-            switch (text)
+            switch (temptext[0])
             {
+                case "register":
+                    {
+                        Users.OpenDB();
+                        Users.InsertTable(temptext[1], temptext[2], temptext[3]);
+                        Users.ReadTable();
+                        Users.CloseDB();
+                        break;
+                    }
+
                 case "time":
-                    response = "<001>" + DateTime.Now.ToLongTimeString();
-                    break;
+                    {
+                        response = "<001>" + DateTime.Now.ToLongTimeString();
+                        break;
+                    }
 
                 case "clients":
-                    response = "<001>" + clientSockets.Count.ToString();
-                    break;
+                    {
+                        response = "<001>" + clientSockets.Count.ToString();
+                        break;
+                    }
 
                 case "quit":
-                    response = "<002>Quitting";
+                    {
+                        response = "<002>Quitting.........";
+                        socket.Close();
+                        break;
+                    }
 
-                    break;
+                case "user":
+                    {
+                        var str = temptext[1];
+                        var name = Users.ReadTable(str);
+                        response = "<003>" + name;
+                        break;
+                    }
 
                 default:
-                    response = "<002>Invalid Command";
-                    break;
+                    {
+                        response = "<002>Invalid Command";
+                        break;
+                    }
 
             }
 
