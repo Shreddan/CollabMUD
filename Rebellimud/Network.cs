@@ -74,6 +74,13 @@ namespace Rebellimud
                         break;
                     }
 
+                case "login":
+                    {
+                        Users.OpenDB();
+                        Users.
+                        break;
+                    }
+
                 case "time":
                     {
                         response = "<001>" + DateTime.Now.ToLongTimeString();

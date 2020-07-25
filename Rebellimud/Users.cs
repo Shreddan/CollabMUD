@@ -11,6 +11,7 @@ namespace Rebellimud
         public static SqliteConnection conn;
         public static SqliteCommand delTable;
         public static SqliteCommand createTable;
+        public static SqliteCommand checkTable;
         public static SqliteCommand insertTable;
         public static SqliteCommand selectTable;
         public static SqliteTransaction transaction;
@@ -60,6 +61,12 @@ namespace Rebellimud
             {
                 Console.WriteLine(e);
             }
+        }
+
+        public static void CheckTable()
+        {
+            checkTable = conn.CreateCommand();
+            checkTable.CommandText = "WHERE";
         }
 
         public static void InsertTable(string name, string pass, string aclass)
