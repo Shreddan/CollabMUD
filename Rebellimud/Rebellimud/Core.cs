@@ -6,10 +6,10 @@ namespace Rebellimud
 {
     class Core
     {
-        public static int Main(String[] args)
+        public static void Main(string[] args)
         {
-            AsynchronousSocketListener.StartListening();
-            return 0;
+            Network.Setup();
+            Console.ReadLine();
         }
     }
 }

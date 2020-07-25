@@ -8,27 +8,20 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\Rebellimud.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\Rebellimud.csproj",
       "projectName": "Rebellimud",
-      "projectPath": "C:\\Users\\User\\source\\repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\Rebellimud.csproj",
+      "projectPath": "C:\\Users\\User\\Source\\Repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\Rebellimud.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\obj\\",
+      "outputPath": "C:\\Users\\User\\Source\\Repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -65,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

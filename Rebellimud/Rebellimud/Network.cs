@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -8,152 +9,80 @@ using System.Threading;
 
 namespace Rebellimud
 {
-    public class StateObject
+    class Network
     {
-        // Client  socket.  
-        public Socket workSocket = null;
-        // Size of receive buffer.  
-        public const int BufferSize = 1024;
-        // Receive buffer.  
-        public byte[] buffer = new byte[BufferSize];
-        // Received data string.  
-        public StringBuilder sb = new StringBuilder();
-    }
+        private static byte[] buffer = new byte[1024];
+        private static List<Socket> clientSockets = new List<Socket>();
+        private static Socket serverSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        private static string response = string.Empty;
 
-    public class AsynchronousSocketListener
-    {
-        // Thread signal.  
-        public static ManualResetEvent allDone = new ManualResetEvent(false);
+        
 
-        public AsynchronousSocketListener()
+        public static void Setup()
         {
+            Console.WriteLine("Setting up Server");
+            serverSock.Bind(new IPEndPoint(IPAddress.Any, 100));
+            serverSock.Listen(10);
+            serverSock.BeginAccept(new AsyncCallback(AcceptCallBack), null);
         }
 
-        public static void StartListening()
-        { 
-            IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 23);
+        private static void AcceptCallBack(IAsyncResult ar)
+        {
+            Socket socket = serverSock.EndAccept(ar);
+            clientSockets.Add(socket);
+            Console.WriteLine("Client Connected");
+            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallBack), socket);
+            serverSock.BeginAccept(new AsyncCallback(AcceptCallBack), null);
+        }
 
-            Console.WriteLine($"{localEndPoint.Address} {localEndPoint.Port}");
+        private static void ReceiveCallBack(IAsyncResult ar)
+        {
+            Socket socket = (Socket)ar.AsyncState;
+            int received = socket.EndReceive(ar);
+            byte[] dBuf = new byte[received];
+            Array.Copy(buffer, dBuf, received);
+            string text = Encoding.ASCII.GetString(dBuf);
+            Console.WriteLine("Text Received : " + text);
 
-            Socket listener = new Socket(ipAddress.AddressFamily,
-                SocketType.Stream, ProtocolType.Tcp);
+            Parse(text);
 
-            // Bind the socket and listen for incoming connections.  
-            try
+            byte[] data = Encoding.ASCII.GetBytes(response);
+            socket.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(SendCallBack), socket);
+            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallBack), socket);
+        }
+
+        private static void SendCallBack(IAsyncResult ar)
+        {
+            Socket socket = (Socket)ar.AsyncState;
+            socket.EndSend(ar);
+        }
+
+        private static void Parse(string text)
+        {
+            text = text.ToLower();
+
+            switch (text)
             {
-                listener.Bind(localEndPoint);
-                listener.Listen(100);
+                case "time":
+                    response = "<001>" + DateTime.Now.ToLongTimeString();
+                    break;
 
-                while (true)
-                {
-                    // Reset event   
-                    allDone.Reset();
+                case "clients":
+                    response = "<001>" + clientSockets.Count.ToString();
+                    break;
 
-                    // Start an asynchronous socket to listen for connections.  
-                    Console.WriteLine("Waiting for a connection...");
-                    listener.BeginAccept(
-                        new AsyncCallback(AcceptCallback),
-                        listener);
+                case "quit":
+                    response = "<002>Quitting";
 
-                    // Wait until a connection is made before continuing.  
-                    allDone.WaitOne();
-                }
+                    break;
+
+                default:
+                    response = "<002>Invalid Command";
+                    break;
 
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-
-            Console.WriteLine("\nPress ENTER to continue...");
-            Console.Read();
 
         }
-
-        public static void AcceptCallback(IAsyncResult ar)
-        {
-            // Tell the main thread to continue  
-            allDone.Set();
- 
-            Socket listener = (Socket)ar.AsyncState;
-            Socket handler = listener.EndAccept(ar);
-
-            // Create state object.  
-            StateObject state = new StateObject();
-            state.workSocket = handler;
-            handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                new AsyncCallback(ReadCallback), state);
-        }
-
-        public static void ReadCallback(IAsyncResult ar)
-        {
-            String content = String.Empty;
-
-            // Retrieve state object and handler socket  
-            // from asynchronous state object.  
-            StateObject state = (StateObject)ar.AsyncState;
-            Socket handler = state.workSocket;
-
-            // Read data from the client   
-            int bytesRead = handler.EndReceive(ar);
-
-            if (bytesRead > 0)
-            {
-                // There  might be more data, so store the data received so far.  
-                state.sb.Append(Encoding.ASCII.GetString(
-                    state.buffer, 0, bytesRead));
-
-                // Check for end-of-file
-                content = state.sb.ToString();
-                if (content.IndexOf("<EOF>") > -1)
-                {
-                    // Data read, now display  
-                    Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
-                        content.Length, content);
-                    // Send Data back to Client  
-                    Send(handler, content);
-                }
-                else
-                {  
-                    handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                    new AsyncCallback(ReadCallback), state);
-                }
-            }
-        }
-
-        private static void Send(Socket handler, String data)
-        {
-            // Convert string data to byte data using ASCII encoding.  
-            byte[] byteData = Encoding.ASCII.GetBytes(data);
-
-            
-            handler.BeginSend(byteData, 0, byteData.Length, 0,
-                new AsyncCallback(SendCallback), handler);
-        }
-
-        private static void SendCallback(IAsyncResult ar)
-        {
-            try
-            {
-                  
-                Socket handler = (Socket)ar.AsyncState;
-
-                int bytesSent = handler.EndSend(ar);
-                Console.WriteLine("Sent {0} bytes to client.", bytesSent);
-
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
-
-       
     }
 }
 

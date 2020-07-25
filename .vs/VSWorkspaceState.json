@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Rebellimud",
+    "\\Rebellimud\\Rebellimud"
   ],
-  "SelectedNode": "\\Legacy",
+  "SelectedNode": "\\Rebellimud\\Rebellimud\\Network.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -9,3 +9,5 @@ C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\ne
 C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.AssemblyInfo.cs
 C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.dll
 C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.pdb
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Shreddan\CollabMUD\Rebellimud\Rebellimud\obj\Debug\netcoreapp3.1\Rebellimud.genruntimeconfig.cache
