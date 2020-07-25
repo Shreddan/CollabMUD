@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\Rebellimud.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud.csproj",
       "projectName": "Rebellimud",
-      "projectPath": "C:\\Users\\User\\Source\\Repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\Rebellimud.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Source\\Repos\\Shreddan\\CollabMUD\\Rebellimud\\Rebellimud\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\Shreddan\\CollabMUD\\Rebellimud\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
