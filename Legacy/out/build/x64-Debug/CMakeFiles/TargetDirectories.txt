@@ -1,3 +1,0 @@
-C:/Users/User/source/repos/Shreddan/CollabMUD/Legacy/out/build/x64-Debug/CMakeFiles/output.dir
-C:/Users/User/source/repos/Shreddan/CollabMUD/Legacy/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/User/source/repos/Shreddan/CollabMUD/Legacy/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
